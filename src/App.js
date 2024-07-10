@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Suspense} from 'react';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import LoginButton from './components/LoginButton';
+import PageAnalytics from './components/PageAnalytics';
+import PageInsights from './components/PageInsights';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<LoginButton/>}/>
+      <Route path='/user/analytics' element={<PageAnalytics/>}/>
+      <Route path='/page/:id' element={<PageInsights/>}/>
+    </Routes>
+
+   </BrowserRouter>
+
+  )
 }
 
-export default App;
+export default App

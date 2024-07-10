@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const PageAnalytics = () => {
   const [selectedPage, setSelectedPage] = useState(null);
-  const [pages,setPages] = useState([])
+  const [pages,setPages] = useState([]);
   const location = useLocation();
   const { state } = location;
   const navigate = useNavigate();
@@ -53,7 +53,13 @@ const PageAnalytics = () => {
         })
 
     }
-  }
+  };
+ 
+  const dummydata = [
+    {label:"page 1",value:"1232433"},
+    {label:"page 2",value:"1232433"},
+    {label:"page 3",value:"1232433"},
+  ]
 
 return (
     <div>
@@ -67,7 +73,12 @@ return (
           />
           <h3>Select a Facebook Page</h3>
           <Select
-            options={pages?.map((page)=>({label:page.name,value:page.id}))}
+            options={!pages || pages.length === 0 ? (
+                dummydata.map((page) => ({ label: page.label, value: page.value }))
+            ) : (
+                pages.map((page) => ({ label: page.name, value: page.id }))
+            )}
+            
             onChange={handlePageChange}
             value={selectedPage}
           />
